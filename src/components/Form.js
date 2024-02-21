@@ -17,7 +17,12 @@ const Form = ({setInputText, todos, setTodos, inputText, setStatus}) => {
   return (
     <form>
       {/* value={inputText} update ui*/}
-    <input  value={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
+    {/* <input  value={inputText} onChange={inputTextHandler} type="text" className="todo-input" /> */}
+    <input value={inputText} onChange={inputTextHandler} type="text" name="title" placeholder="Title" className="todo-input"/>
+
+    <input value={inputText} onChange={inputTextHandler} type="text" name="due_date" placeholder="Due Date" className="todo-input"/>
+
+    <input value={inputText} onChange={inputTextHandler} type="text" name="description" placeholder="Description" className="todo-input"/>
     <button onClick={submitTodoHandler} className="todo-button" type="submit">
       <i className="fas fa-plus-square"></i>
     </button>
