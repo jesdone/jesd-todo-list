@@ -2,11 +2,17 @@ import React, {useState, useEffect} from "react";
 import "./App.css"
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import CustomInput from "./components/CustomInput";
+
 
 function App(){
 
   //State
-  const [inputText, setInputText] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    duedate:"",
+    description:"",
+  });
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
@@ -36,6 +42,19 @@ function App(){
     }
   }
 
+  const handleInputChange = (e) => {
+    const {title, value} = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [title]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  }
+
   //Save to Local
   const saveLocalTodos = () => {
       localStorage.setItem('todos', JSON.stringify(todos))
@@ -56,13 +75,20 @@ return(
   <h1>Task List</h1>
   </header>
 <Form 
-inputText={inputText} 
+formData={formData}
 todos={todos} 
 setTodos={setTodos} 
-setInputText={setInputText}
+setFormData={setFormData}
 setStatus={setStatus}
+handleInputChange={handleInputChange}
+handleSubmit={handleSubmit}
 />
-<TodoList filteredTodos={filteredTodos} 
+<CustomInput />
+
+<TodoList 
+formData={formData}
+setFormData={setFormData}
+filteredTodos={filteredTodos} 
 setTodos={setTodos} 
 todos={todos}
 />

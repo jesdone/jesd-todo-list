@@ -16,17 +16,15 @@ const Todo = ({text, todo, todos, setTodos}) => {
         })
         );
     };
-    // const editHandler = ({text, todo, todos, setTodos}) => {
-        // setTodos(todos.map(item => {
-        //     if(item.id === todo.id){
-        //         return {
-                    // ...item, text: !item.text
-            //     }
-            // }
-    //             return item;
-    //     })
-    //     );
-    // }
+
+    const editHandler = (id) => {
+        setTodos(
+          todos.map((todo) =>
+            todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo
+          )
+        );
+      }
+
 
   return (
     <div className='todo'>
@@ -35,8 +33,8 @@ const Todo = ({text, todo, todos, setTodos}) => {
             </i></button>
         <button onClick={deleteHandler} className='trash-btn'><i className='fas fa-trash'>
             </i></button>
-        {/* <button onClick={editHandler} className='edit-btn'><i className='fas fa-edit'>
-            </i></button> */}
+        <button onClick={editHandler} className='edit-btn'><i className='fas fa-edit'>
+            </i></button>
     </div>
   )
 }
